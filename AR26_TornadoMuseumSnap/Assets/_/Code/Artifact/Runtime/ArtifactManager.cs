@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using PoolSystem_RunTime;
+using UnityEngine;
 using UnityEngine.Splines;
 
 namespace Artifact.Runtime
@@ -7,29 +9,23 @@ namespace Artifact.Runtime
     {
         #region Publics
 
-        //public PoolSystem m_poolArtifact;
+        public PrefabPool m_poolArtifact;
         public SplineContainer[] m_splineContainers;
 
         #endregion
-
-        /*
-         * When get cube
-         * GameObject artifact = m_poolArtifact.GetArtifact();
-         * artifact.addComponent<ArtifactBehaviour>();
-         * ArtifactBehaviour behaviour = artifact.getComponent<ArtifactBehaviour>();
-         * behaviour.SetArtifactManager(this);
-         * artifact.SetActive(true)
-         */
+        
         
         #region Unity API
+        
 
-        private void Awake()
+        private void Update()
         {
-            
+            SpawnArtifact();
         }
 
         #endregion
 
+        
         #region Main Methods
 
         public SplineContainer GetRandomSplineContainer()
@@ -41,8 +37,27 @@ namespace Artifact.Runtime
         }
 
         #endregion
+        
+        #region Utils
 
+        private void SpawnArtifact()
+        {
+            _time += Time.deltaTime;
+            if (_time <= _spawnTimer) return;
+            GameObject artifact = m_poolArtifact.GetArtefact();
+            ArtifactBehaviour behaviour = artifact.GetComponent<ArtifactBehaviour>();
+            behaviour.SetArtifactManager(this);
+            artifact.SetActive(true);
+            _time = 0f;
+        }
+        
+        #endregion
+
+        
         #region Privates
+
+        private float _time = 0;
+        [SerializeField] private float _spawnTimer = 1f;
 
         #endregion
     }
