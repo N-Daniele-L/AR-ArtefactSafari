@@ -1,0 +1,14 @@
+{
+    "name": "PoolSystem_RunTime",
+    "rootNamespace": "PoolSystem_RunTime",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
