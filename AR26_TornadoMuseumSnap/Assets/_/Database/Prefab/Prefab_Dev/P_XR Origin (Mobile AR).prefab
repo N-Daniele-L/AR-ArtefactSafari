@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4442145652876278926}
   - component: {fileID: 4361772582952917419}
   m_Layer: 0
-  m_Name: XR Origin (Mobile AR)
+  m_Name: P_XR Origin (Mobile AR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
