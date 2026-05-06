@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="21c6509c-3697-4040-a917-dea112d36b81" name="Changes" comment="" />
+    <list default="true" id="21c6509c-3697-4040-a917-dea112d36b81" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AR26_TornadoMuseumSnap/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AR26_TornadoMuseumSnap/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/OpenXR Package Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/OpenXR Package Settings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_/Code/PoolSystem/RunTime/PrefabPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_/Code/PoolSystem/RunTime/PrefabPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_/Database/Prefab/Prefab_Dev/P_Artefact 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_/Database/Prefab/Prefab_Dev/P_Artefact 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_/Database/Prefab/Prefab_Dev/P_Artefact 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_/Database/Prefab/Prefab_Dev/P_Artefact 2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_/Scenes/Scenes_Dev/Richard_Pool.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_/Scenes/Scenes_Dev/Richard_Pool.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="3DLfLZl4sXIwhtqzzBlXfRK2IN0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -19,8 +33,9 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "Dev",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="TaskManager">
@@ -34,6 +49,7 @@
     </task>
     <servers />
   </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="unityProject" value="true" />
     <option name="unityProjectFolder" value="true" />
