@@ -17,11 +17,27 @@ namespace Input.Runtime
 
         private void OnEnable()
         {
-
             _CaptureButton.onClick.AddListener(OnScreenshotCaptureActionPerformed);
         }
-        
 
+        private void Start()
+        {
+            _isDelayScreenshotInSecondsActive = true;
+        }
+
+        private void Update()
+        {
+            if (_isDelayScreenshotInSecondsActive)
+            {
+                _timer +=  Time.deltaTime;
+                if (_timer >= _delayScreenshotInSeconds)
+                {
+                    _isDelayScreenshotInSecondsActive = false;
+                    _CaptureButton.interactable = true;  
+                    _timer = 0;
+                }
+            }
+        }
         private void OnDisable()
         {
             _CaptureButton.onClick.RemoveListener(OnScreenshotCaptureActionPerformed);
@@ -36,12 +52,17 @@ namespace Input.Runtime
         #region Utils
         private void OnScreenshotCaptureActionPerformed()
         {
-            Debug.Log("Screenshot captured");
+            _isDelayScreenshotInSecondsActive = true;
+            _CaptureButton.interactable = false;
         }
 
         #endregion
 
         #region Privates
+
+        [SerializeField] private float _delayScreenshotInSeconds;
+        private float _timer;
+        [SerializeField] private bool _isDelayScreenshotInSecondsActive;
 
         #endregion
     }
