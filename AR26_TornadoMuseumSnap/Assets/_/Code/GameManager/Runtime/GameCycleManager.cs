@@ -59,9 +59,9 @@ namespace GameManager.Runtime
         private void StartGame()
         {
             Debug.Log("Game initialise");
-            bool _allDesignedArtifactSpawned = m_artifactManager.RunGame(_beginArtefactCount);
+            bool allDesignedArtifactSpawned = m_artifactManager.RunGame(_beginArtefactCount);
             _timer = 0f;
-            if(_allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
+            if(allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
         }
 
         private void SendEndGame()
@@ -69,7 +69,6 @@ namespace GameManager.Runtime
             Debug.Log("Game end");
             _btnScreenShot.SetActive(false);
             m_artifactManager.EndSpawnArtifact(true);
-            //block input
             _gameState = GameState.ENDED;
         }
 
@@ -89,7 +88,6 @@ namespace GameManager.Runtime
         }
          
         [SerializeField] private GameState _gameState;
-        
         [Header("Debug References")]
         [SerializeField]private DebugGameManager _debugGameManager;
         [SerializeField] private int _beginArtefactCount;

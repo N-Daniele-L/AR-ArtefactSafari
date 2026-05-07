@@ -37,7 +37,7 @@ namespace Artifact.Runtime
             return splineContainer;
         }
         
-        public void ArtifactDespawned()
+        public void ArtifactDespawned(GameObject artifact)
         {
             _countArtifactAlive--;
         }
