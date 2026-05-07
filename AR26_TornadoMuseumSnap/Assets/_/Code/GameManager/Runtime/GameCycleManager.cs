@@ -18,6 +18,7 @@ namespace GameManager.Runtime
         private void Start()
         {
             _gameState = GameState.STARTING;
+            //block input
         }
 
         private void Update()
@@ -55,6 +56,7 @@ namespace GameManager.Runtime
         {
             Debug.Log("Game initialise");
             bool _allDesignedArtifactSpawned = m_artifactManager.RunGame(3);
+            //active input
             _timer = 0f;
             if(_allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
         }
@@ -63,6 +65,7 @@ namespace GameManager.Runtime
         {
             Debug.Log("Game end");
             m_artifactManager.EndSpawnArtifact(true);
+            //block input
             _gameState = GameState.ENDED;
         }
 

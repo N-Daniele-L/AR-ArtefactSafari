@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Artifact.Runtime::Artifact.Runtime.ArtifactBehaviour
   m_splineAnimate: {fileID: 0}
   m_artifactManager: {fileID: 0}
-  _speed: 0.5
+  _speed: 1
   _angleRotationPerSecond: 180
   _hasBeenPhotographied: 0
   _maxRaycastCanHit: 0
