@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+using Data.Runtime;
+using ScoreManager.Runtime;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
-using UnityEngine.UI;
 
 namespace ScreenShot.Runtime
 {
@@ -9,16 +9,7 @@ namespace ScreenShot.Runtime
     {
         #region Unity APi
 
-        private void Awake()
-        {
-            _mainCamera = Camera.main;
-            _rendererTextures =  new List<RenderTexture>();
-        }
-
-        private void Update()
-        {
-            
-        }
+        private void Awake()=> _mainCamera = Camera.main;
         
 
         #endregion
@@ -31,26 +22,19 @@ namespace ScreenShot.Runtime
             SetRenderCameraToMainCamera();
             RenderTexture renderTexture = new RenderTexture(480, 270,GraphicsFormat.R8G8B8A8_UNorm,GraphicsFormat.D16_UNorm);
             renderTexture.Create();
-            _rendererTextures.Add(renderTexture);
+            
             _renderCamera.targetTexture = renderTexture;
             _renderCamera.enabled = true;
             _renderCamera.Render();
-            //SetScreenShotToRawImage();
+            
+            //insert raycast here
+            int raycastHit = 10;
+            
+            
+            ScreenShotData shotData = new ScreenShotData(renderTexture, raycastHit);
+            _scoreManager.GetScreenshot(shotData);
             _renderCamera.enabled = false;
         }
-        
-        public void SetScreenShotToRawImage()
-        {
-            int i = 0;
-            foreach (RenderTexture renderTexture in _rendererTextures)
-            {
-                if (i >= _rawImages.Count) break;
-                _rawImages[i].texture = renderTexture;
-                _rawImages[i].gameObject.SetActive(true);
-                i++;
-            }
-        }
-
         
 
         #endregion
@@ -69,11 +53,8 @@ namespace ScreenShot.Runtime
         #region Private
 
         [SerializeField] private Camera _renderCamera;
-        [SerializeField] private List<RawImage> _rawImages;
+        [SerializeField] private ScoreFromScreenshotManager _scoreManager;
         private Camera _mainCamera;
-        
-        private List<RenderTexture> _rendererTextures;
-        private RenderTexture _renderTexture;
 
         #endregion
     }
