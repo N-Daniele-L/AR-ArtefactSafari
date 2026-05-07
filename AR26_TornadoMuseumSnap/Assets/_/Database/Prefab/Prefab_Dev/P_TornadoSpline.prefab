@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5610173761850564170}
   - component: {fileID: 3178752867847848667}
   m_Layer: 0
-  m_Name: TornadoSpline
+  m_Name: P_TornadoSpline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

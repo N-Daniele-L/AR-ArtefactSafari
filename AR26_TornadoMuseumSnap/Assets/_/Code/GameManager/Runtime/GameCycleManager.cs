@@ -1,10 +1,17 @@
 using System;
+using Artifact.Runtime;
 using UnityEngine;
 
 namespace GameManager.Runtime
 {
     public class GameCycleManager : MonoBehaviour
     {
+        #region Publics
+        
+            public ArtifactManager m_artifactManager;
+        
+        #endregion
+        
         
         #region Unity API
 
@@ -47,13 +54,15 @@ namespace GameManager.Runtime
         private void StartGame()
         {
             Debug.Log("Game initialise");
+            bool _allDesignedArtifactSpawned = m_artifactManager.RunGame(3);
             _timer = 0f;
-            _gameState = GameState.RUNNING;
+            if(_allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
         }
 
         private void SendEndGame()
         {
             Debug.Log("Game end");
+            m_artifactManager.EndSpawnArtifact(true);
             _gameState = GameState.ENDED;
         }
 
