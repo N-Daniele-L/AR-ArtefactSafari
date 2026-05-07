@@ -20,7 +20,6 @@ namespace Artifact.Runtime
 
         private void Update()
         {
-            if (_gameIsOver) return;
             if (_countArtifactAlive >= _maxArtifactAlive) return;
             SpawnArtifact();
         }

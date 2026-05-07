@@ -9,6 +9,8 @@ namespace GameManager.Runtime
         #region Publics
         
             public ArtifactManager m_artifactManager;
+            public GameObject _btnScreenShot;
+
         
         #endregion
         
@@ -18,7 +20,7 @@ namespace GameManager.Runtime
         private void Start()
         {
             _gameState = GameState.STARTING;
-            //block input
+            _btnScreenShot.SetActive(false);
         }
 
         private void Update()
@@ -31,6 +33,7 @@ namespace GameManager.Runtime
                     StartGame();
                     break;
                 case GameState.RUNNING:
+                    _btnScreenShot.SetActive(true);
                     _timer += Time.deltaTime;
                     if (_timer >= _chronoInSeconds)
                     {
@@ -38,6 +41,7 @@ namespace GameManager.Runtime
                     }
                     break;
                 case GameState.ENDED:
+                    
                     break;
                 case GameState.PAUSED:
                     break;
@@ -55,8 +59,7 @@ namespace GameManager.Runtime
         private void StartGame()
         {
             Debug.Log("Game initialise");
-            bool _allDesignedArtifactSpawned = m_artifactManager.RunGame(3);
-            //active input
+            bool _allDesignedArtifactSpawned = m_artifactManager.RunGame(_beginArtefactCount);
             _timer = 0f;
             if(_allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
         }
@@ -64,6 +67,7 @@ namespace GameManager.Runtime
         private void SendEndGame()
         {
             Debug.Log("Game end");
+            _btnScreenShot.SetActive(false);
             m_artifactManager.EndSpawnArtifact(true);
             //block input
             _gameState = GameState.ENDED;
@@ -88,6 +92,7 @@ namespace GameManager.Runtime
         
         [Header("Debug References")]
         [SerializeField]private DebugGameManager _debugGameManager;
+        [SerializeField] private int _beginArtefactCount;
 
         #endregion
     }
