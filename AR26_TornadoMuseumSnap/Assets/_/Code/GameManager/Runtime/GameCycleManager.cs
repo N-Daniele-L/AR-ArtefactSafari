@@ -1,6 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Artifact.Runtime;
+using Data.Runtime;
+using ScoreManager.Runtime;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace GameManager.Runtime
 {
@@ -54,6 +60,13 @@ namespace GameManager.Runtime
 
         #endregion
 
+        #region Main Methods
+
+        public void RestartGame() => SceneManager.LoadScene(0);
+        public void CloseGame() => Application.Quit();
+
+        #endregion
+
         #region Utils
 
         private void StartGame()
@@ -69,7 +82,21 @@ namespace GameManager.Runtime
             Debug.Log("Game end");
             _btnScreenShot.SetActive(false);
             m_artifactManager.EndSpawnArtifact(true);
+            _screenShotData = _scoreFromScreenshotManager.EndScoreData();
+            _endPanels.SetActive(true);
+            DisplayEndScore();
             _gameState = GameState.ENDED;
+        }
+
+        private void DisplayEndScore()
+        {
+            for (int i = 0; i < _screenShotData.Count; i++)
+            {
+                _rawImages[i].texture = _screenShotData[i].m_shotTexture;
+                if(_screenShotData[i].m_objectHit != null) _titleImages[i].text = _screenShotData[i].m_objectHit.name;
+                else _titleImages[i].text = "no artefact";
+                _scoreImages[i].text = _screenShotData[i].m_screenShotScore.ToString();
+            }
         }
 
         #endregion
@@ -77,7 +104,7 @@ namespace GameManager.Runtime
         #region Private
 
         [Header("Gameplay reference"), SerializeField] private float _chronoInSeconds;
-        private float _timer;
+        private float _timer = 0;
          private enum GameState
         {
          none,
@@ -91,6 +118,12 @@ namespace GameManager.Runtime
         [Header("Debug References")]
         [SerializeField]private DebugGameManager _debugGameManager;
         [SerializeField] private int _beginArtefactCount;
+        [SerializeField] private ScoreFromScreenshotManager  _scoreFromScreenshotManager;
+        private List<ScreenShotData> _screenShotData;
+        [SerializeField] private RawImage[] _rawImages;
+        [SerializeField] private TMP_Text[] _titleImages;
+        [SerializeField] private TMP_Text[] _scoreImages;
+        [SerializeField] private GameObject _endPanels;
 
         #endregion
     }
