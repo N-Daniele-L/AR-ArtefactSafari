@@ -1,5 +1,5 @@
 ﻿using System;
-using PoolSystem_RunTime;
+using PoolSystem.RunTime;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -20,6 +20,8 @@ namespace Artifact.Runtime
 
         private void Update()
         {
+            if (_gameIsOver) return;
+            if (_countArtifactAlive >= _maxArtifactAlive) return;
             SpawnArtifact();
         }
 
@@ -35,6 +37,21 @@ namespace Artifact.Runtime
             SplineContainer splineContainer = m_splineContainers[randomIndex];
             return splineContainer;
         }
+        
+        public void ArtifactDespawned()
+        {
+            _countArtifactAlive--;
+        }
+
+        public bool RunGame(int beginGameAtArtifactCount)
+        {
+            return !(_countArtifactAlive < beginGameAtArtifactCount);
+        }
+
+        public void EndSpawnArtifact(bool isGameOver)
+        {
+            _gameIsOver =  isGameOver;
+        }
 
         #endregion
         
@@ -43,13 +60,16 @@ namespace Artifact.Runtime
         private void SpawnArtifact()
         {
             _time += Time.deltaTime;
-            if (_time <= _spawnTimer) return;
+            if (_time <= _spawnTimerInSecond) return;
             GameObject artifact = m_poolArtifact.GetArtefact();
             ArtifactBehaviour behaviour = artifact.GetComponent<ArtifactBehaviour>();
             behaviour.SetArtifactManager(this);
             artifact.SetActive(true);
             _time = 0f;
+            _countArtifactAlive++;
         }
+
+        
         
         #endregion
 
@@ -57,7 +77,11 @@ namespace Artifact.Runtime
         #region Privates
 
         private float _time = 0;
-        [SerializeField] private float _spawnTimer = 1f;
+        [SerializeField] private float _spawnTimerInSecond = 1f;
+        private float _countArtifactAlive;
+        private bool _gameIsOver = false;
+        [SerializeField] private float _maxArtifactAlive = 10;
+
 
         #endregion
     }

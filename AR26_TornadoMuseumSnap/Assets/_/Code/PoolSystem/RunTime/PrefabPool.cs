@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PoolSystem_RunTime
+namespace PoolSystem.RunTime
 {
     public class PrefabPool : MonoBehaviour
     {
@@ -12,16 +12,30 @@ namespace PoolSystem_RunTime
 
         #region Main Methods
 
-        public GameObject GetArtefact()
+        public GameObject GetArtefact() // active the first one of the list
         {
-            for (int i = 0; i < _gameObjectsSpawned.Count; i++)
+            for (int i = 0; i < _artefactsSpawned.Count; i++)
             {
-                if (!_gameObjectsSpawned[i].activeInHierarchy)
+                if (!_artefactsSpawned[i].activeInHierarchy)
                 {
-                    return _gameObjectsSpawned[i];
+                    return _artefactsSpawned[i];
                 }
             }
-            return SpawnRandomPrefab();
+            return SpawnRandomArtefactPrefab(); // if all actived, spawn a new objet random of the list
+        }
+
+        public void RemoveArtefact(GameObject obj) // disable the oldest each time
+        {
+            // for (int i = 0; i < _gameObjectsSpawned.Count; i++)
+            // {
+            //     if (_gameObjectsSpawned[i].activeInHierarchy)
+            //     {
+            //         _gameObjectsSpawned[i].SetActive(false);
+            //         break;
+            //     }
+            // }
+            
+            obj.SetActive(false);
         }
         
         #endregion
@@ -38,13 +52,13 @@ namespace PoolSystem_RunTime
         #region Utils
 
 
-        private GameObject SpawnRandomPrefab()
+        private GameObject SpawnRandomArtefactPrefab() // random spawn
         {
             int random =  Random.Range(0, _artefactsPrefab.Count);
             
             GameObject obj = Instantiate(_artefactsPrefab[random],transform);
             obj.SetActive(false);
-            _gameObjectsSpawned.Add(obj);
+            _artefactsSpawned.Add(obj);
             return obj;
         }
 
@@ -54,7 +68,7 @@ namespace PoolSystem_RunTime
             {
                 GameObject obj = Instantiate(_artefactsPrefab[i],transform);
                 obj.SetActive(false);
-                _gameObjectsSpawned.Add(obj);
+                _artefactsSpawned.Add(obj);
             }
         }
         
@@ -63,7 +77,7 @@ namespace PoolSystem_RunTime
         #region Privates
         
         [SerializeField]private List<GameObject> _artefactsPrefab;
-        private List<GameObject> _gameObjectsSpawned = new List<GameObject>();
+        private List<GameObject> _artefactsSpawned = new List<GameObject>();
         
         #endregion
     }

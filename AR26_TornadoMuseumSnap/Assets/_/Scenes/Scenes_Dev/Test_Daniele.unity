@@ -216,8 +216,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361274632}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.06822, y: -0, z: 0.91091}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -225,7 +225,7 @@ Transform:
   - {fileID: 59354601}
   - {fileID: 1539787681}
   - {fileID: 2102781599}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1890040146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &703900434
 GameObject:
@@ -408,7 +408,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7235890509334978861, guid: 117457a3444b6084aaa44429f5635b74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 361274633}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 117457a3444b6084aaa44429f5635b74, type: 3}
 --- !u!1 &1163120622
@@ -422,7 +425,7 @@ GameObject:
   - component: {fileID: 1163120623}
   - component: {fileID: 1163120624}
   m_Layer: 0
-  m_Name: PoolArtifact
+  m_Name: PoolArtifactManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,12 +439,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163120622}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.66028, y: 0, z: -2.31476}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1538539811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1163120624
 MonoBehaviour:
@@ -515,6 +518,7 @@ MonoBehaviour:
   - {fileID: 1539787682}
   - {fileID: 2102781600}
   _spawnTimer: 1
+  _maxArtifactAlive: 1
 --- !u!1 &1538539810
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +549,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1279836926}
+  - {fileID: 1163120623}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1539787680
@@ -696,6 +701,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1890040146 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7235890509334978861, guid: 117457a3444b6084aaa44429f5635b74, type: 3}
+  m_PrefabInstance: {fileID: 879068462}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2102781598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -833,6 +843,4 @@ SceneRoots:
   - {fileID: 703900436}
   - {fileID: 1706204414}
   - {fileID: 1538539811}
-  - {fileID: 361274633}
-  - {fileID: 1163120623}
   - {fileID: 879068462}
