@@ -20,6 +20,7 @@ namespace Artifact.Runtime
 
         private void Update()
         {
+            if (_countArtifactAlive >= _maxArtifactAlive) return;
             SpawnArtifact();
         }
 
@@ -35,6 +36,11 @@ namespace Artifact.Runtime
             SplineContainer splineContainer = m_splineContainers[randomIndex];
             return splineContainer;
         }
+        
+        public void ArtifactDespawned()
+        {
+            _countArtifactAlive--;
+        }
 
         #endregion
         
@@ -49,7 +55,10 @@ namespace Artifact.Runtime
             behaviour.SetArtifactManager(this);
             artifact.SetActive(true);
             _time = 0f;
+            _countArtifactAlive++;
         }
+
+        
         
         #endregion
 
@@ -58,6 +67,9 @@ namespace Artifact.Runtime
 
         private float _time = 0;
         [SerializeField] private float _spawnTimer = 1f;
+        private float _countArtifactAlive;
+        [SerializeField] private float _maxArtifactAlive = 10;
+
 
         #endregion
     }
