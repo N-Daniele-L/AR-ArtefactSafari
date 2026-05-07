@@ -1,10 +1,7 @@
 {
-    "name": "ScreenShot.Runtime",
-    "rootNamespace": "ScreenShot.Runtime",
-    "references": [
-        "GUID:2c1d11eea1fdfa0429ae711918588cd7",
-        "GUID:6338d3337c750de459c94bb81ed898d7"
-    ],
+    "name": "Data.Runtime",
+    "rootNamespace": "Data.Runtime",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

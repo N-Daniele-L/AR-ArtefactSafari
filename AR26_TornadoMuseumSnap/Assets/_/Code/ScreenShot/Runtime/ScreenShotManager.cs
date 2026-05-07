@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+using Data.Runtime;
+using ScoreManager.Runtime;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
-using UnityEngine.UI;
 
 namespace ScreenShot.Runtime
 {
@@ -9,36 +9,32 @@ namespace ScreenShot.Runtime
     {
         #region Unity APi
 
-        private void Awake()
-        {
-            _mainCamera = Camera.main;
-            _rendererTextures =  new List<RenderTexture>();
-        }
-
-        private void Update()
-        {
-            if (_renderCamera.enabled)
-            {
-                _renderCamera.enabled = false;
-                SetScreenShotToRawImage();
-                _renderCamera.targetTexture = null;
-            }
-        }
+        private void Awake()=> _mainCamera = Camera.main;
         
 
         #endregion
 
         #region Main Methods
 
+        
         public void TakeScreenShot()
         {
             SetRenderCameraToMainCamera();
-            RenderTexture renderTexture = new RenderTexture(480, 270,GraphicsFormat.B8G8R8A8_UNorm,GraphicsFormat.D32_SFloat_S8_UInt);
-            _rendererTextures.Add(renderTexture);
+            RenderTexture renderTexture = new RenderTexture(480, 270,GraphicsFormat.R8G8B8A8_UNorm,GraphicsFormat.D16_UNorm);
+            renderTexture.Create();
+            
             _renderCamera.targetTexture = renderTexture;
             _renderCamera.enabled = true;
+            _renderCamera.Render();
+            
+            //insert raycast here
+            int raycastHit = 10;
+            
+            
+            ScreenShotData shotData = new ScreenShotData(renderTexture, raycastHit);
+            _scoreManager.GetScreenshot(shotData);
+            _renderCamera.enabled = false;
         }
-
         
 
         #endregion
@@ -47,20 +43,8 @@ namespace ScreenShot.Runtime
 
         private void SetRenderCameraToMainCamera()
         {
-            _renderCamera.transform.position =  _mainCamera.transform.position;
+            _renderCamera.transform.position = _mainCamera.transform.position;
             _renderCamera.transform.rotation = _mainCamera.transform.rotation;
-        }
-
-        private void SetScreenShotToRawImage()
-        {
-            int i = 0;
-            foreach (RenderTexture renderTexture in _rendererTextures)
-            {
-                if (i >= _rawImages.Count) break;
-                _rawImages[i].texture = renderTexture;
-                _rawImages[i].gameObject.SetActive(true);
-                i++;
-            }
         }
         
 
@@ -69,11 +53,8 @@ namespace ScreenShot.Runtime
         #region Private
 
         [SerializeField] private Camera _renderCamera;
+        [SerializeField] private ScoreFromScreenshotManager _scoreManager;
         private Camera _mainCamera;
-        
-        [SerializeField] private List<RenderTexture> _rendererTextures;
-        private RenderTexture _renderTexture;
-        [SerializeField] private List<RawImage> _rawImages;
 
         #endregion
     }

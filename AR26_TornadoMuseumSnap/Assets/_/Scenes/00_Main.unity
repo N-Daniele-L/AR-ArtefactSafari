@@ -130,6 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineContainer
+--- !u!1 &207147540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6490902965758959435, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+  m_PrefabInstance: {fileID: 1150657555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &361274633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5125547923711012434, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
@@ -476,6 +481,14 @@ PrefabInstance:
       value: P_GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 3159122108282300240, guid: 23486c257ef525349b0650c8a6ed6d42, type: 3}
+      propertyPath: _btnInput
+      value: 
+      objectReference: {fileID: 207147540}
+    - target: {fileID: 3159122108282300240, guid: 23486c257ef525349b0650c8a6ed6d42, type: 3}
+      propertyPath: _btnScreenShot
+      value: 
+      objectReference: {fileID: 1964602097}
+    - target: {fileID: 3159122108282300240, guid: 23486c257ef525349b0650c8a6ed6d42, type: 3}
       propertyPath: _chronoInSeconds
       value: 20
       objectReference: {fileID: 0}
@@ -483,6 +496,10 @@ PrefabInstance:
       propertyPath: m_artifactManager
       value: 
       objectReference: {fileID: 1279836927}
+    - target: {fileID: 3159122108282300240, guid: 23486c257ef525349b0650c8a6ed6d42, type: 3}
+      propertyPath: _beginArtefactCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3533456758147389655, guid: 23486c257ef525349b0650c8a6ed6d42, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.90136
@@ -581,6 +598,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3533456758147389655, guid: 23486c257ef525349b0650c8a6ed6d42, type: 3}
   m_PrefabInstance: {fileID: 985785387}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1150657555
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 517378150625620678, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_CaptureButton
+      value: 
+      objectReference: {fileID: 1375737370}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339429741007475732, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6490902965758959435, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
+      propertyPath: m_Name
+      value: P_InputManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ce08a6ddb448ad4197fba243e27024f, type: 3}
 --- !u!4 &1163120623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6631966636229847074, guid: 95b6c81359af51c4998e71a9a26552e4, type: 3}
@@ -613,6 +691,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1250271cbb1147a0b6b47673c3e8861f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Artifact.Runtime::Artifact.Runtime.ArtifactManager
+--- !u!114 &1375737370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2977462239539699907, guid: be3cce721ae5cbe43a3b6c8aa60dd2ff, type: 3}
+  m_PrefabInstance: {fileID: 1451278483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1451278483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -766,6 +855,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineContainer
+--- !u!1 &1964602097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6687446539260126294, guid: be3cce721ae5cbe43a3b6c8aa60dd2ff, type: 3}
+  m_PrefabInstance: {fileID: 1451278483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2102781600 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1394223439865167390, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
@@ -919,6 +1013,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Splines
       objectReference: {fileID: 0}
+    - target: {fileID: 3933223788906214405, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933223788906214405, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265954590495476058, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265954590495476058, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.12
+      objectReference: {fileID: 0}
     - target: {fileID: 5125547923711012434, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.44545
@@ -958,6 +1068,22 @@ PrefabInstance:
     - target: {fileID: 5125547923711012434, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921984900671047791, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921984900671047791, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259359270545203855, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259359270545203855, guid: ae944a3480c47854abe4bb9bbfc5109f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1026,7 +1152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9183197131397525496, guid: 1d900f88de95f07419a846a4d1dadd81, type: 3}
       propertyPath: _spawnTimerInSecond
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9183197131397525496, guid: 1d900f88de95f07419a846a4d1dadd81, type: 3}
       propertyPath: 'm_splineContainers.Array.data[0]'
@@ -1060,3 +1186,4 @@ SceneRoots:
   - {fileID: 5645524350704555168}
   - {fileID: 1451278483}
   - {fileID: 927298652}
+  - {fileID: 1150657555}
