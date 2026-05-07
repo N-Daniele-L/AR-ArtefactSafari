@@ -17,12 +17,7 @@ namespace ScreenShot.Runtime
 
         private void Update()
         {
-            if (_renderCamera.enabled)
-            {
-                _renderCamera.enabled = false;
-                SetScreenShotToRawImage();
-                _renderCamera.targetTexture = null;
-            }
+            
         }
         
 
@@ -30,28 +25,21 @@ namespace ScreenShot.Runtime
 
         #region Main Methods
 
+        
         public void TakeScreenShot()
         {
             SetRenderCameraToMainCamera();
-            RenderTexture renderTexture = new RenderTexture(480, 270,GraphicsFormat.B8G8R8A8_UNorm,GraphicsFormat.D32_SFloat_S8_UInt);
+            RenderTexture renderTexture = new RenderTexture(480, 270,GraphicsFormat.R8G8B8A8_UNorm,GraphicsFormat.D16_UNorm);
+            renderTexture.Create();
             _rendererTextures.Add(renderTexture);
             _renderCamera.targetTexture = renderTexture;
             _renderCamera.enabled = true;
+            _renderCamera.Render();
+            //SetScreenShotToRawImage();
+            _renderCamera.enabled = false;
         }
-
         
-
-        #endregion
-
-        #region Utils
-
-        private void SetRenderCameraToMainCamera()
-        {
-            _renderCamera.transform.position =  _mainCamera.transform.position;
-            _renderCamera.transform.rotation = _mainCamera.transform.rotation;
-        }
-
-        private void SetScreenShotToRawImage()
+        public void SetScreenShotToRawImage()
         {
             int i = 0;
             foreach (RenderTexture renderTexture in _rendererTextures)
@@ -62,6 +50,18 @@ namespace ScreenShot.Runtime
                 i++;
             }
         }
+
+        
+
+        #endregion
+
+        #region Utils
+
+        private void SetRenderCameraToMainCamera()
+        {
+            _renderCamera.transform.position = _mainCamera.transform.position;
+            _renderCamera.transform.rotation = _mainCamera.transform.rotation;
+        }
         
 
         #endregion
@@ -69,11 +69,11 @@ namespace ScreenShot.Runtime
         #region Private
 
         [SerializeField] private Camera _renderCamera;
+        [SerializeField] private List<RawImage> _rawImages;
         private Camera _mainCamera;
         
-        [SerializeField] private List<RenderTexture> _rendererTextures;
+        private List<RenderTexture> _rendererTextures;
         private RenderTexture _renderTexture;
-        [SerializeField] private List<RawImage> _rawImages;
 
         #endregion
     }
