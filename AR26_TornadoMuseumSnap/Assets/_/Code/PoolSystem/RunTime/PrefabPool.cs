@@ -14,14 +14,25 @@ namespace PoolSystem.RunTime
 
         public GameObject GetArtefact() // active the first one of the list
         {
-            for (int i = 0; i < _artefactsSpawned.Count; i++)
-            {
-                if (!_artefactsSpawned[i].activeInHierarchy)
+                do
                 {
-                    return _artefactsSpawned[i];
-                }
-            }
-            return SpawnRandomArtefactPrefab(); // if all actived, spawn a new objet random of the list
+                    _count++;
+                    _randomArtefact = Random.Range(0, _artefactsSpawned.Count);
+                } while (_randomArtefact == _lastArtefactUsed || _artefactsSpawned[_randomArtefact].activeInHierarchy && _count < 20);
+            
+                _lastArtefactUsed = _randomArtefact;
+                GameObject obj = _artefactsSpawned[_randomArtefact];
+            
+                return obj;
+            
+            // for (int i = 0; i < _artefactsSpawned.Count; i++)
+            // {
+            //     if (!_artefactsSpawned[i].activeInHierarchy)
+            //     {
+            //         return _artefactsSpawned[i];
+            //     }
+            // }
+            // return SpawnRandomArtefactPrefab(); // if all actived, spawn a new objet random of the list
         }
 
         public void RemoveArtefact(GameObject obj) // disable the oldest each time
@@ -34,7 +45,6 @@ namespace PoolSystem.RunTime
             //         break;
             //     }
             // }
-            
             obj.SetActive(false);
         }
         
@@ -78,7 +88,12 @@ namespace PoolSystem.RunTime
         
         [SerializeField]private List<GameObject> _artefactsPrefab;
         private List<GameObject> _artefactsSpawned = new List<GameObject>();
-        
+        private int _randomArtefact;
+        private int _lastArtefactUsed = -1;
+        // private GameObject _lastOject;
+        // private GameObject _randomObject;
+        private int _count = 0;
+
         #endregion
     }
 }
