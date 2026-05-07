@@ -3,13 +3,13 @@
     "name": "InputSystem_Actions",
     "maps": [
         {
-            "name": "Mobile",
-            "id": "d04ea39c-dc54-4945-804f-b89f9d1647b1",
+            "name": "Keyboard",
+            "id": "baf4f28b-2c19-43a0-956c-9c564e9f5b8c",
             "actions": [
                 {
-                    "name": "Action",
+                    "name": "Click",
                     "type": "Button",
-                    "id": "99786112-eef5-454d-89f4-4e3b69aa5642",
+                    "id": "aa3df41b-fa83-4d71-b40f-6428051a41cf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -19,12 +19,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "f7efd438-fd90-405e-8100-2b1b07d588fb",
-                    "path": "<Touchscreen>/Press",
+                    "id": "2139b358-79a4-4604-9fd3-24e177cb8c1e",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Touch",
-                    "action": "Action",
+                    "groups": "",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
