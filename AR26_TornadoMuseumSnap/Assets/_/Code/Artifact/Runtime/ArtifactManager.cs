@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using PoolSystem.RunTime;
+using UnityEngine;
 using UnityEngine.Splines;
 
 namespace Artifact.Runtime
@@ -7,29 +9,25 @@ namespace Artifact.Runtime
     {
         #region Publics
 
-        //public PoolSystem m_poolArtifact;
+        public PrefabPool m_poolArtifact;
         public SplineContainer[] m_splineContainers;
 
         #endregion
-
-        /*
-         * When get cube
-         * GameObject artifact = m_poolArtifact.GetArtifact();
-         * artifact.addComponent<ArtifactBehaviour>();
-         * ArtifactBehaviour behaviour = artifact.getComponent<ArtifactBehaviour>();
-         * behaviour.SetArtifactManager(this);
-         * artifact.SetActive(true)
-         */
+        
         
         #region Unity API
+        
 
-        private void Awake()
+        private void Update()
         {
-            
+            if (_gameIsOver) return;
+            if (_countArtifactAlive >= _maxArtifactAlive) return;
+            SpawnArtifact();
         }
 
         #endregion
 
+        
         #region Main Methods
 
         public SplineContainer GetRandomSplineContainer()
@@ -39,10 +37,51 @@ namespace Artifact.Runtime
             SplineContainer splineContainer = m_splineContainers[randomIndex];
             return splineContainer;
         }
+        
+        public void ArtifactDespawned()
+        {
+            _countArtifactAlive--;
+        }
+
+        public bool RunGame(int beginGameAtArtifactCount)
+        {
+            return !(_countArtifactAlive < beginGameAtArtifactCount);
+        }
+
+        public void EndSpawnArtifact(bool isGameOver)
+        {
+            _gameIsOver =  isGameOver;
+        }
 
         #endregion
+        
+        #region Utils
 
+        private void SpawnArtifact()
+        {
+            _time += Time.deltaTime;
+            if (_time <= _spawnTimerInSecond) return;
+            GameObject artifact = m_poolArtifact.GetArtefact();
+            ArtifactBehaviour behaviour = artifact.GetComponent<ArtifactBehaviour>();
+            behaviour.SetArtifactManager(this);
+            artifact.SetActive(true);
+            _time = 0f;
+            _countArtifactAlive++;
+        }
+
+        
+        
+        #endregion
+
+        
         #region Privates
+
+        private float _time = 0;
+        [SerializeField] private float _spawnTimerInSecond = 1f;
+        private float _countArtifactAlive;
+        private bool _gameIsOver = false;
+        [SerializeField] private float _maxArtifactAlive = 10;
+
 
         #endregion
     }

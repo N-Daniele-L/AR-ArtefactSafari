@@ -21,9 +21,21 @@ namespace Artifact.Runtime
             m_splineAnimate = GetComponent<SplineAnimate>();
         }
 
+        private void OnEnable()
+        {
+            if(m_artifactManager)
+                SetupSplineAnimation();
+        }
+
         private void Start()
         {
-            SetupSplineAnimation();
+            
+        }
+
+        private void OnDisable()
+        {
+            if(m_artifactManager) 
+                ArtifactDead();
         }
 
         private void Update()
@@ -51,6 +63,7 @@ namespace Artifact.Runtime
             SplineContainer container = m_artifactManager.GetRandomSplineContainer();
             m_splineAnimate.Container = container;
             m_splineAnimate.AnimationMethod = SplineAnimate.Method.Speed;
+            m_splineAnimate.NormalizedTime = 0;
             m_splineAnimate.MaxSpeed = _speed;
             m_splineAnimate.Loop = SplineAnimate.LoopMode.Loop;
             m_splineAnimate.Alignment = SplineAnimate.AlignmentMode.None;
@@ -69,6 +82,11 @@ namespace Artifact.Runtime
             m_splineAnimate.MaxSpeed = Mathf.Lerp(m_splineAnimate.MaxSpeed, _speed * 2f, Time.deltaTime);
         }
 
+        private void ArtifactDead()
+        {
+            m_artifactManager.ArtifactDespawned();
+        }
+
         #endregion
 
         #region Privates
@@ -77,6 +95,7 @@ namespace Artifact.Runtime
         [Range(0,100)]private float _speed = 1.5f;
         [SerializeField] private float _angleRotationPerSecond = 180f;
         [SerializeField] private bool _hasBeenPhotographied = false;
+        [SerializeField] private int _maxRaycastCanHit;
 
         #endregion
     }
