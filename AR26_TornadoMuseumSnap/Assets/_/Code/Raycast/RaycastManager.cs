@@ -8,9 +8,10 @@ public class RaycastManager : MonoBehaviour
 {
     #region Publics
     
-    public int gridWidth = 192;
-    public int gridHeigth = 108;
-    public float cellSize = 0.05f;
+    public Camera cam;
+    public int gridWidth = 48;
+    public int gridHeigth = 27;
+    public float cellSize = 40f;
     public LayerMask layerMask;
     public List<RaycastHit> results = new List<RaycastHit>(10000);
 
@@ -29,27 +30,32 @@ public class RaycastManager : MonoBehaviour
     
     
     #region Unity API
+
+    public void Awake()
+    {
+        cam = Camera.main;
+    }
+    
+    
     public void SendRaycast()
     {
-        for (int x = 0; x < gridWidth; x++)
+        for (int a = 0; a < gridWidth; a++)
         {
-            for (int z = 0; z < gridHeigth; z++)
+            for (int b = 0; b < gridHeigth; b++)
             {
-                Vector3 rayorigin = new Vector3(x * cellSize, z * cellSize, 0); 
-                rayorigin += transform.position; 
-                Vector3 rayDirection = Vector3.forward; 
-
+                Vector3 rayDirection = new Vector3(a * cellSize, b * cellSize, 0); 
+                Ray r = cam.ScreenPointToRay(rayDirection);
                 RaycastHit hit;
 
-                if (Physics.Raycast(rayorigin, rayDirection, out hit, 20f, layerMask))
+                if (Physics.Raycast(r.origin,r.direction, out hit, 20f, layerMask))
                 {
-                    Debug.DrawLine(rayorigin, hit.point, Color.darkGreen,5f); 
+                    Debug.DrawLine(r.origin, hit.point, Color.darkGreen,5f); 
                     results.Add(hit);
                     Debug.Log($"Ray hit {hit.collider.gameObject.name} at {hit.point}");
                 }
                 else 
                 { 
-                    Debug.DrawLine(rayorigin, rayorigin + rayDirection * 20f, Color.red,5f);
+                    Debug.DrawLine(r.origin, r.origin + r.direction * 20f, Color.red,5f);
                 }
             }
         }
