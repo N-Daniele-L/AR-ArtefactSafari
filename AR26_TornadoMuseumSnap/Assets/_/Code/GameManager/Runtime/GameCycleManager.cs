@@ -1,16 +1,17 @@
 using System;
+using System.Collections.Generic;
 using Artifact.Runtime;
+using Data.Runtime;
+using ScoreManager.Runtime;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace GameManager.Runtime
 {
     public class GameCycleManager : MonoBehaviour
     {
-        #region Publics
-        
-            public ArtifactManager m_artifactManager;
-        
-        #endregion
         
         
         #region Unity API
@@ -18,6 +19,7 @@ namespace GameManager.Runtime
         private void Start()
         {
             _gameState = GameState.STARTING;
+            _btnScreenShot.SetActive(false);
         }
 
         private void Update()
@@ -30,6 +32,7 @@ namespace GameManager.Runtime
                     StartGame();
                     break;
                 case GameState.RUNNING:
+                    _btnScreenShot.SetActive(true);
                     _timer += Time.deltaTime;
                     if (_timer >= _chronoInSeconds)
                     {
@@ -37,15 +40,21 @@ namespace GameManager.Runtime
                     }
                     break;
                 case GameState.ENDED:
+                    
                     break;
                 case GameState.PAUSED:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            _debugGameManager.DisplayChrono(_chronoInSeconds - _timer);
-            _debugGameManager.DisplayGameCycle(_gameState.ToString());
         }
+
+        #endregion
+
+        #region Main Methods
+
+        public void RestartGame() => SceneManager.LoadScene(0);
+        public void CloseGame() => Application.Quit();
 
         #endregion
 
@@ -53,24 +62,36 @@ namespace GameManager.Runtime
 
         private void StartGame()
         {
-            Debug.Log("Game initialise");
-            bool _allDesignedArtifactSpawned = m_artifactManager.RunGame(3);
+            bool allDesignedArtifactSpawned = _artifactManager.RunGame(_beginArtefactCount);
             _timer = 0f;
-            if(_allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
+            if(allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
         }
 
         private void SendEndGame()
         {
-            Debug.Log("Game end");
-            m_artifactManager.EndSpawnArtifact(true);
+            _btnScreenShot.SetActive(false);
+            _artifactManager.EndSpawnArtifact(true);
+            _screenShotData = _scoreFromScreenshotManager.EndScoreData();
+            _endPanels.SetActive(true);
+            DisplayEndScore();
             _gameState = GameState.ENDED;
+        }
+
+        private void DisplayEndScore()
+        {
+            for (int i = 0; i < _screenShotData.Count; i++)
+            {
+                _rawImages[i].texture = _screenShotData[i].m_shotTexture;
+                if(_screenShotData[i].m_objectHit != null) _titleImages[i].text = _screenShotData[i].m_objectHit.name;
+                else _titleImages[i].text = "no artefact";
+                _scoreImages[i].text = _screenShotData[i].m_screenShotScore.ToString();
+            }
         }
 
         #endregion
 
         #region Private
 
-        [Header("Gameplay reference"), SerializeField] private float _chronoInSeconds;
         private float _timer;
          private enum GameState
         {
@@ -81,11 +102,22 @@ namespace GameManager.Runtime
          PAUSED,
         }
          
+        [Header("Dev References")] 
         [SerializeField] private GameState _gameState;
-        
-        [Header("Debug References")]
-        [SerializeField]private DebugGameManager _debugGameManager;
+        [SerializeField] private ScoreFromScreenshotManager  _scoreFromScreenshotManager;
+        [SerializeField] private ArtifactManager _artifactManager;
+        [Header("Design Reference")]
+        [SerializeField] private int _beginArtefactCount;
+        [SerializeField] private float _chronoInSeconds;
+        [Header("UI References")]
+        [SerializeField] private RawImage[] _rawImages;
+        [SerializeField] private TMP_Text[] _titleImages;
+        [SerializeField] private TMP_Text[] _scoreImages;
+        [SerializeField] private GameObject _endPanels;
+        [SerializeField] private GameObject _btnScreenShot;
 
+        private List<ScreenShotData> _screenShotData;
+        
         #endregion
     }
 }

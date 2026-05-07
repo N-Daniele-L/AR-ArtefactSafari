@@ -1,0 +1,14 @@
+{
+    "name": "ScoreManager.Runtime",
+    "rootNamespace": "ScoreManager.Runtime",
+    "references": ["GUID:2c1d11eea1fdfa0429ae711918588cd7"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

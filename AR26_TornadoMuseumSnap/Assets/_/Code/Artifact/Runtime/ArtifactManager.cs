@@ -20,7 +20,6 @@ namespace Artifact.Runtime
 
         private void Update()
         {
-            if (_gameIsOver) return;
             if (_countArtifactAlive >= _maxArtifactAlive) return;
             SpawnArtifact();
         }
@@ -38,7 +37,7 @@ namespace Artifact.Runtime
             return splineContainer;
         }
         
-        public void ArtifactDespawned()
+        public void ArtifactDespawned(GameObject artifact)
         {
             _countArtifactAlive--;
         }

@@ -1,3 +1,4 @@
+using ScreenShot.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -57,6 +58,7 @@ namespace Input.Runtime
         {
             _isDelayScreenshotInSecondsActive = true;
             m_CaptureButton.interactable = false;
+            _screenShotManager.TakeScreenShot();
         }
 
         #endregion
@@ -67,6 +69,7 @@ namespace Input.Runtime
         [SerializeField] private float _delayScreenshotInSeconds;
         private float _timer;
         [SerializeField] private bool _isDelayScreenshotInSecondsActive;
+        [SerializeField] private ScreenShotManager _screenShotManager;
 
         #endregion
     }

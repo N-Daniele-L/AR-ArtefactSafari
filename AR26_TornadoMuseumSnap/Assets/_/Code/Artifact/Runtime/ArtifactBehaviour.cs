@@ -19,6 +19,7 @@ namespace Artifact.Runtime
         private void Awake()
         {
             m_splineAnimate = GetComponent<SplineAnimate>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
         private void OnEnable()
@@ -40,6 +41,7 @@ namespace Artifact.Runtime
 
         private void Update()
         {
+            m_splineAnimate.MaxSpeed = _speed;
             if(!_hasBeenPhotographied) IdleMovement();
             if(_hasBeenPhotographied) ReactionMovement();
         }
@@ -51,6 +53,11 @@ namespace Artifact.Runtime
         public void SetArtifactManager(ArtifactManager artifactManager)
         {
             m_artifactManager = artifactManager;
+        }
+        
+        public void HasBeenPhotographied()
+        {
+            _hasBeenPhotographied = true;
         }
         
         #endregion
@@ -73,18 +80,24 @@ namespace Artifact.Runtime
 
         private void IdleMovement()
         {
-            m_splineAnimate.MaxSpeed = Mathf.Lerp(m_splineAnimate.MaxSpeed, _speed, Time.deltaTime);
+            m_splineAnimate.MaxSpeed = _speed;
             transform.Rotate(Vector3.one, _angleRotationPerSecond * Time.deltaTime);
         }
 
         private void ReactionMovement()
         {
-            m_splineAnimate.MaxSpeed = Mathf.Lerp(m_splineAnimate.MaxSpeed, _speed * 2f, Time.deltaTime);
+            m_splineAnimate.MaxSpeed = _speed * 2f;
+        }
+        
+        [ContextMenu("Remove Gravity")]public void EndGameGravity()
+        {
+            m_splineAnimate.Pause();
+            _rigidbody.useGravity = true;
         }
 
         private void ArtifactDead()
         {
-            m_artifactManager.ArtifactDespawned();
+            m_artifactManager.ArtifactDespawned(this.gameObject);
         }
 
         #endregion
@@ -96,6 +109,7 @@ namespace Artifact.Runtime
         [SerializeField] private float _angleRotationPerSecond = 180f;
         [SerializeField] private bool _hasBeenPhotographied = false;
         [SerializeField] private int _maxRaycastCanHit;
+        private Rigidbody _rigidbody;
 
         #endregion
     }

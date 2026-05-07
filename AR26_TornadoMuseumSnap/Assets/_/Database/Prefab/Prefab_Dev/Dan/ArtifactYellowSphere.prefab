@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2510658768216352238}
   - component: {fileID: -225798262967860082}
   - component: {fileID: -8177142825000686729}
+  - component: {fileID: -7715975534854919384}
   m_Layer: 0
   m_Name: ArtifactYellowSphere
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -151,7 +152,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Artifact.Runtime::Artifact.Runtime.ArtifactBehaviour
   m_splineAnimate: {fileID: 0}
   m_artifactManager: {fileID: 0}
-  _speed: 0.5
+  _speed: 1
   _angleRotationPerSecond: 180
   _hasBeenPhotographied: 0
   _maxRaycastCanHit: 0
+--- !u!54 &-7715975534854919384
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456104103888292612}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
