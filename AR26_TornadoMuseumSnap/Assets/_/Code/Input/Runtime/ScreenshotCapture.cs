@@ -8,16 +8,17 @@ namespace Input.Runtime
     {
         #region Publics
 
-        public InputActionReference _ScreenshotCapture;
-        public Button _CaptureButton;
+        public InputActionReference m_ScreenshotCapture;
+        public Button m_CaptureButton;
 
         #endregion
 
+        
         #region Unity API
 
         private void OnEnable()
         {
-            _CaptureButton.onClick.AddListener(OnScreenshotCaptureActionPerformed);
+            m_CaptureButton.onClick.AddListener(OnScreenshotCaptureActionPerformed);
         }
 
         private void Start()
@@ -33,31 +34,34 @@ namespace Input.Runtime
                 if (_timer >= _delayScreenshotInSeconds)
                 {
                     _isDelayScreenshotInSecondsActive = false;
-                    _CaptureButton.interactable = true;  
+                    m_CaptureButton.interactable = true;  
                     _timer = 0;
                 }
             }
         }
         private void OnDisable()
         {
-            _CaptureButton.onClick.RemoveListener(OnScreenshotCaptureActionPerformed);
+            m_CaptureButton.onClick.RemoveListener(OnScreenshotCaptureActionPerformed);
            }
 
         #endregion
 
+        
         #region Main methods
 
         #endregion
 
+        
         #region Utils
         private void OnScreenshotCaptureActionPerformed()
         {
             _isDelayScreenshotInSecondsActive = true;
-            _CaptureButton.interactable = false;
+            m_CaptureButton.interactable = false;
         }
 
         #endregion
 
+        
         #region Privates
 
         [SerializeField] private float _delayScreenshotInSeconds;
