@@ -147,7 +147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638049919461271882, guid: 53f039ad1dbe5334184a7a1084ad1cbe, type: 3}
       propertyPath: m_Name
-      value: P_PLAYMOBIL_SEAT
+      value: P_Playmobil Sit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

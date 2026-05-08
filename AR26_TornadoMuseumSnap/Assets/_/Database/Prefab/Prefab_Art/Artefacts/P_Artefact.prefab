@@ -107,7 +107,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5800254639284253472, guid: 9ee3c6d74a7c0824488f87065abfbfa3, type: 3}
       propertyPath: m_Name
-      value: P_BRANCHE_TROLLS
+      value: P_Branche Troll
       objectReference: {fileID: 0}
     - target: {fileID: 6062589038608818843, guid: 9ee3c6d74a7c0824488f87065abfbfa3, type: 3}
       propertyPath: m_LocalPosition.x

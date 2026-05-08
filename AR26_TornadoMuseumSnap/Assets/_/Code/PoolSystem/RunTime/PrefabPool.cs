@@ -87,8 +87,17 @@ namespace PoolSystem.RunTime
             {
                 GameObject obj = Instantiate(_artefactsPrefab[i],transform);
                 obj.SetActive(false);
+                obj.name = ChangeName(obj);
                 _artefactsSpawned.Add(obj);
             }
+        }
+
+        private string ChangeName(GameObject obj)
+        {
+            string newName = (obj.transform.GetChild(0)).name;
+            newName = newName.Replace("(Clone)", "");
+            newName = newName.Replace("P_", "");
+            return newName;
         }
         
         #endregion

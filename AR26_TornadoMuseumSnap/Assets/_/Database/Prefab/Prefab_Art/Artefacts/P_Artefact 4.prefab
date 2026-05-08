@@ -147,7 +147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8389784445835614789, guid: b6da51d271954464cb71c6ad7ddba446, type: 3}
       propertyPath: m_Name
-      value: P_gameboy
+      value: P_GameBoy
       objectReference: {fileID: 0}
     - target: {fileID: 8389784445835614789, guid: b6da51d271954464cb71c6ad7ddba446, type: 3}
       propertyPath: m_Layer
@@ -155,7 +155,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 962666234818407663, guid: b6da51d271954464cb71c6ad7ddba446, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4295440765537660140, guid: b6da51d271954464cb71c6ad7ddba446, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6da51d271954464cb71c6ad7ddba446, type: 3}

@@ -86,7 +86,8 @@ namespace Artifact.Runtime
 
         private void ReactionMovement()
         {
-            m_splineAnimate.MaxSpeed = _speed * 2f;
+            //m_splineAnimate.MaxSpeed = _speed * 2f;
+            gameObject.SetActive(false);
         }
         
         [ContextMenu("Remove Gravity")]public void EndGameGravity()

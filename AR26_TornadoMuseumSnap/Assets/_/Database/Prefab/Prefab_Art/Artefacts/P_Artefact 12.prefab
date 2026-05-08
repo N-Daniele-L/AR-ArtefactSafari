@@ -107,7 +107,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3082056477072174902, guid: 8f60bf5041c9fa849b9e151c53ac2fb2, type: 3}
       propertyPath: m_Name
-      value: P_Redsaber
+      value: P_Red Saber
       objectReference: {fileID: 0}
     - target: {fileID: 3082056477072174902, guid: 8f60bf5041c9fa849b9e151c53ac2fb2, type: 3}
       propertyPath: m_Layer

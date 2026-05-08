@@ -107,7 +107,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5198316482832633926, guid: 898fa21d1ac80e2418d13523c04bc528, type: 3}
       propertyPath: m_Name
-      value: P_Greensaber
+      value: P_Green Saber
       objectReference: {fileID: 0}
     - target: {fileID: 7564881297063389331, guid: 898fa21d1ac80e2418d13523c04bc528, type: 3}
       propertyPath: m_LocalPosition.x

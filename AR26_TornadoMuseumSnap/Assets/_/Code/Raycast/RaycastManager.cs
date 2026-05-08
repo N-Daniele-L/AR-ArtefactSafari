@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Artifact.Runtime;
 using Data.Runtime;
 using JetBrains.Annotations;
 using TMPro;
@@ -47,7 +48,9 @@ public class RaycastManager : MonoBehaviour
                 }
             }
         }
-        return GetObjectWithMaxHit(_gameObjetHits);
+        var data = GetObjectWithMaxHit(_gameObjetHits);
+        data.m_obj.GetComponent<ArtifactBehaviour>().HasBeenPhotographied();
+        return data;
     }
 
     #endregion

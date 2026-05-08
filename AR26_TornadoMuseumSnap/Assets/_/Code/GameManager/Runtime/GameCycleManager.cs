@@ -20,6 +20,7 @@ namespace GameManager.Runtime
         {
             _gameState = GameState.STARTING;
             _btnScreenShot.SetActive(false);
+            Application.targetFrameRate = 60;
         }
 
         private void Update()
@@ -33,6 +34,7 @@ namespace GameManager.Runtime
                     break;
                 case GameState.RUNNING:
                     _btnScreenShot.SetActive(true);
+                    _timerText.text = (_chronoInSeconds - _timer).ToString(("F0"));
                     _timer += Time.deltaTime;
                     if (_timer >= _chronoInSeconds)
                     {
@@ -40,7 +42,6 @@ namespace GameManager.Runtime
                     }
                     break;
                 case GameState.ENDED:
-                    
                     break;
                 case GameState.PAUSED:
                     break;
@@ -63,6 +64,8 @@ namespace GameManager.Runtime
         private void StartGame()
         {
             bool allDesignedArtifactSpawned = _artifactManager.RunGame(_beginArtefactCount);
+            _tornadoObject.SetActive(true);
+            _timerText.gameObject.SetActive(true);
             _timer = 0f;
             if(allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
         }
@@ -70,6 +73,8 @@ namespace GameManager.Runtime
         private void SendEndGame()
         {
             _btnScreenShot.SetActive(false);
+            _tornadoObject.SetActive(false);
+            _timerText.gameObject.SetActive(false);
             _artifactManager.EndSpawnArtifact(true);
             _screenShotData = _scoreFromScreenshotManager.EndScoreData();
             _endPanels.SetActive(true);
@@ -79,13 +84,17 @@ namespace GameManager.Runtime
 
         private void DisplayEndScore()
         {
+            int totalScore = 0;
             for (int i = 0; i < _screenShotData.Count; i++)
             {
+                _artefactPanel[i].SetActive(true);
                 _rawImages[i].texture = _screenShotData[i].m_shotTexture;
                 if(_screenShotData[i].m_objectHit != null) _titleImages[i].text = _screenShotData[i].m_objectHit.name;
                 else _titleImages[i].text = "Nothing";
                 _scoreImages[i].text = _screenShotData[i].m_screenShotScore.ToString();
+                totalScore += _screenShotData[i].m_screenShotScore;
             }
+            _totalScoreText.text =  totalScore.ToString();
         }
 
         #endregion
@@ -106,15 +115,20 @@ namespace GameManager.Runtime
         [SerializeField] private GameState _gameState;
         [SerializeField] private ScoreFromScreenshotManager  _scoreFromScreenshotManager;
         [SerializeField] private ArtifactManager _artifactManager;
+        [SerializeField] private GameObject _tornadoObject;
         [Header("Design Reference")]
         [SerializeField] private int _beginArtefactCount;
         [SerializeField] private float _chronoInSeconds;
         [Header("UI References")]
+        [SerializeField] private TMP_Text _totalScoreText;
+
+        [SerializeField] private List<GameObject> _artefactPanel;
         [SerializeField] private RawImage[] _rawImages;
         [SerializeField] private TMP_Text[] _titleImages;
         [SerializeField] private TMP_Text[] _scoreImages;
         [SerializeField] private GameObject _endPanels;
         [SerializeField] private GameObject _btnScreenShot;
+        [SerializeField] private TMP_Text _timerText;
 
         private List<ScreenShotData> _screenShotData;
         

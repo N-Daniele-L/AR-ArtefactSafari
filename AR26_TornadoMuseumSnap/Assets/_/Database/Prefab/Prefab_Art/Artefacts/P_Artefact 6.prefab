@@ -107,7 +107,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1915250620472215721, guid: 00e87de7bd8018b479071c5ddde869fb, type: 3}
       propertyPath: m_Name
-      value: P_Jouet_voiture
+      value: P_Jouet Voiture
       objectReference: {fileID: 0}
     - target: {fileID: 1915250620472215721, guid: 00e87de7bd8018b479071c5ddde869fb, type: 3}
       propertyPath: m_Layer

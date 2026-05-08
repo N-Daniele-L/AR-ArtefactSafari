@@ -107,7 +107,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 252311725965231339, guid: f15be36666bb6384b8127f6a0c3734dc, type: 3}
       propertyPath: m_Name
-      value: P_DOG
+      value: P_Dog
       objectReference: {fileID: 0}
     - target: {fileID: 252311725965231339, guid: f15be36666bb6384b8127f6a0c3734dc, type: 3}
       propertyPath: m_Layer
