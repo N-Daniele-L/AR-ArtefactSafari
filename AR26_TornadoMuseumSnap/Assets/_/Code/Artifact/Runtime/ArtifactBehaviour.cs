@@ -55,6 +55,11 @@ namespace Artifact.Runtime
             m_artifactManager = artifactManager;
         }
         
+        public void HasBeenPhotographied()
+        {
+            _hasBeenPhotographied = true;
+        }
+        
         #endregion
 
         #region Utils

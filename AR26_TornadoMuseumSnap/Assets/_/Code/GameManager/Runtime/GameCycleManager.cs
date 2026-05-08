@@ -12,13 +12,6 @@ namespace GameManager.Runtime
 {
     public class GameCycleManager : MonoBehaviour
     {
-        #region Publics
-        
-            public ArtifactManager m_artifactManager;
-            public GameObject _btnScreenShot;
-
-        
-        #endregion
         
         
         #region Unity API
@@ -54,8 +47,6 @@ namespace GameManager.Runtime
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            _debugGameManager.DisplayChrono(_chronoInSeconds - _timer);
-            _debugGameManager.DisplayGameCycle(_gameState.ToString());
         }
 
         #endregion
@@ -71,17 +62,15 @@ namespace GameManager.Runtime
 
         private void StartGame()
         {
-            Debug.Log("Game initialise");
-            bool allDesignedArtifactSpawned = m_artifactManager.RunGame(_beginArtefactCount);
+            bool allDesignedArtifactSpawned = _artifactManager.RunGame(_beginArtefactCount);
             _timer = 0f;
             if(allDesignedArtifactSpawned) _gameState = GameState.RUNNING;
         }
 
         private void SendEndGame()
         {
-            Debug.Log("Game end");
             _btnScreenShot.SetActive(false);
-            m_artifactManager.EndSpawnArtifact(true);
+            _artifactManager.EndSpawnArtifact(true);
             _screenShotData = _scoreFromScreenshotManager.EndScoreData();
             _endPanels.SetActive(true);
             DisplayEndScore();
@@ -103,8 +92,7 @@ namespace GameManager.Runtime
 
         #region Private
 
-        [Header("Gameplay reference"), SerializeField] private float _chronoInSeconds;
-        private float _timer = 0;
+        private float _timer;
          private enum GameState
         {
          none,
@@ -114,17 +102,22 @@ namespace GameManager.Runtime
          PAUSED,
         }
          
+        [Header("Dev References")] 
         [SerializeField] private GameState _gameState;
-        [Header("Debug References")]
-        [SerializeField]private DebugGameManager _debugGameManager;
-        [SerializeField] private int _beginArtefactCount;
         [SerializeField] private ScoreFromScreenshotManager  _scoreFromScreenshotManager;
-        private List<ScreenShotData> _screenShotData;
+        [SerializeField] private ArtifactManager _artifactManager;
+        [Header("Design Reference")]
+        [SerializeField] private int _beginArtefactCount;
+        [SerializeField] private float _chronoInSeconds;
+        [Header("UI References")]
         [SerializeField] private RawImage[] _rawImages;
         [SerializeField] private TMP_Text[] _titleImages;
         [SerializeField] private TMP_Text[] _scoreImages;
         [SerializeField] private GameObject _endPanels;
+        [SerializeField] private GameObject _btnScreenShot;
 
+        private List<ScreenShotData> _screenShotData;
+        
         #endregion
     }
 }
