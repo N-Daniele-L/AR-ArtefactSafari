@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6346916262976568570}
   - component: {fileID: -6344098114068959382}
   - component: {fileID: 6841479355873329334}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArtifactYellowCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

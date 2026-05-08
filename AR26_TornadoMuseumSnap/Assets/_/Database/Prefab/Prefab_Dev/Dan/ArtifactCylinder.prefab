@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2093866110431985360}
   - component: {fileID: 6632928671474988315}
   - component: {fileID: 7205529131879372639}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArtifactCylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

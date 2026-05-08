@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3268525431035810914}
   - component: {fileID: -8621624486042454959}
   - component: {fileID: -1355439946451608791}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArtifactCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

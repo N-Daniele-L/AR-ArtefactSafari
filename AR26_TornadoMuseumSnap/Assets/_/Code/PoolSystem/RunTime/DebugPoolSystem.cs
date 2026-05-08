@@ -39,11 +39,6 @@ namespace PoolSystem.RunTime
             _artefactsPrefab.GetArtefact().SetActive(true);
         }
         
-        public void TestGetArtefactOff()
-        {
-            //_artefactsPrefab.RemoveArtefact();
-        }
-        
         #endregion
 
         #region Utils
