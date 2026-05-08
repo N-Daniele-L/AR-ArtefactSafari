@@ -1,66 +1,88 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
+using Data.Runtime;
+using TMPro;
 using UnityEngine;
-using Unity.Collections;
-using Unity.Jobs;
 
 public class RaycastManager : MonoBehaviour
 {
-    #region Publics
-    
-    public Camera cam;
-    public int gridWidth = 48;
-    public int gridHeigth = 27;
-    public float cellSize = 40f;
-    public LayerMask layerMask;
-    public List<RaycastHit> results = new List<RaycastHit>(10000);
 
-    #endregion
-    
-    #region Privates
-    private void OnGUI()
-    {
-        if (GUILayout.Button("Raycast"))
-        {
-          SendRaycast();  
-        }
-    }
-
-    #endregion
-    
-    
     #region Unity API
 
-    public void Awake()
+    private void Awake()
     {
-        cam = Camera.main;
+        _cam = Camera.main;
+    }
+
+    private void FixedUpdate()
+    {
+        _fpsCount.text = _fps.ToString("F0");
+    }
+
+    private void Update()
+    {
+        _fps = 1 / Time.deltaTime;
     }
     
     
+    #endregion
+
+    #region Main Methods
+
     public void SendRaycast()
     {
-        for (int a = 0; a < gridWidth; a++)
+        _gameObjetHits.Clear();
+        for (int a = 0; a < _gridWidth; a++)
         {
-            for (int b = 0; b < gridHeigth; b++)
+            for (int b = 0; b < _gridHeigth; b++)
             {
-                Vector3 rayDirection = new Vector3(a * cellSize, b * cellSize, 0); 
-                Ray r = cam.ScreenPointToRay(rayDirection);
+                Vector3 rayDirection = new Vector3(a * _cellSize, b * _cellSize, 0);
+                Ray r = _cam.ScreenPointToRay(rayDirection);
                 RaycastHit hit;
 
-                if (Physics.Raycast(r.origin,r.direction, out hit, 20f, layerMask))
+                if (Physics.Raycast(r.origin, r.direction, out hit, 20f, _layerMask))
                 {
-                    Debug.DrawLine(r.origin, hit.point, Color.darkGreen,5f); 
-                    results.Add(hit);
-                    Debug.Log($"Ray hit {hit.collider.gameObject.name} at {hit.point}");
-                }
-                else 
-                { 
-                    Debug.DrawLine(r.origin, r.origin + r.direction * 20f, Color.red,5f);
+                    _gameObjetHits.Add(hit.collider.gameObject);
                 }
             }
         }
-            Debug.Log(results.Count);
+        GetObjectWithMaxHit(_gameObjetHits);
     }
-            #endregion
-}
 
+    #endregion
+
+    #region Utils
+
+    private void GetObjectWithMaxHit(List<GameObject> list)
+    {
+        //var newList = list.OrderBy(x => x.name);
+        if (list.Count == 0) return;
+        
+        var countList  = 
+            list
+                .GroupBy(f => f)
+                .Select(g => new { Valeur = g.Key, Nombre = g.Count() })
+                .OrderByDescending(x => x.Nombre);
+
+        _maxHitData = new MaxHitForGameObjectData(countList.First().Valeur, countList.First().Nombre);
+    }
+
+    #endregion
+        
+    #region Privates
+
+        private Camera _cam;
+        private int _gridWidth = 48;
+        private int _gridHeigth = 27;
+        private float _cellSize = 40f;
+        [SerializeField] private LayerMask _layerMask;
+        private List<GameObject> _gameObjetHits = new List<GameObject>();
+        
+        [SerializeField] private TMP_Text _fpsCount;
+        private float _fps;
+
+        private MaxHitForGameObjectData _maxHitData;
+
+        #endregion
+
+}
