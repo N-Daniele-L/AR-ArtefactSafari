@@ -47,10 +47,18 @@ MonoBehaviour:
   _gameState: 0
   _scoreFromScreenshotManager: {fileID: 0}
   _artifactManager: {fileID: 0}
+  _tornadoObject: {fileID: 0}
   _beginArtefactCount: 2
   _chronoInSeconds: 60
-  _rawImages:
+  _startPanels: {fileID: 0}
+  _totalScoreText: {fileID: 0}
+  _artefactPanel:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _rawImages:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -62,9 +70,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   _scoreImages:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -72,3 +78,4 @@ MonoBehaviour:
   - {fileID: 0}
   _endPanels: {fileID: 0}
   _btnScreenShot: {fileID: 0}
+  _timerText: {fileID: 0}

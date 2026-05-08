@@ -48,3 +48,4 @@ MonoBehaviour:
   m_CaptureButton: {fileID: 0}
   _delayScreenshotInSeconds: 2
   _isDelayScreenshotInSecondsActive: 1
+  _screenShotManager: {fileID: 0}

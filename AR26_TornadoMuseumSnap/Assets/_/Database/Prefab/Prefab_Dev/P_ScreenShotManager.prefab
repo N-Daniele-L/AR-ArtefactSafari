@@ -209,9 +209,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ScreenShot.Runtime::ScreenShot.Runtime.ScreenShotManager
   _renderCamera: {fileID: 6318499931630283352}
-  _rawImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _scoreManager: {fileID: 0}
+  _raycastManager: {fileID: 0}

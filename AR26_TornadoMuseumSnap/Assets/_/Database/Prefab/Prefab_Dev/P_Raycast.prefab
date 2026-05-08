@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: RaycastManager.Runtime::RaycastManager
   _layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _fpsCount: {fileID: 0}

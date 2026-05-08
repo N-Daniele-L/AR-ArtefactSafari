@@ -18,7 +18,8 @@ namespace GameManager.Runtime
 
         private void Start()
         {
-            _gameState = GameState.STARTING;
+            //_gameState = GameState.STARTING;
+            _startPanels.SetActive(true);
             _btnScreenShot.SetActive(false);
             Application.targetFrameRate = 60;
         }
@@ -53,6 +54,12 @@ namespace GameManager.Runtime
         #endregion
 
         #region Main Methods
+
+        public void LaunchGame()
+        {
+            _startPanels.SetActive(false);
+            _gameState = GameState.STARTING;
+        }
 
         public void RestartGame() => SceneManager.LoadScene(0);
         public void CloseGame() => Application.Quit();
@@ -119,9 +126,10 @@ namespace GameManager.Runtime
         [Header("Design Reference")]
         [SerializeField] private int _beginArtefactCount;
         [SerializeField] private float _chronoInSeconds;
-        [Header("UI References")]
-        [SerializeField] private TMP_Text _totalScoreText;
 
+        [Header("UI References")] [SerializeField]
+        private GameObject _startPanels;
+        [SerializeField] private TMP_Text _totalScoreText;
         [SerializeField] private List<GameObject> _artefactPanel;
         [SerializeField] private RawImage[] _rawImages;
         [SerializeField] private TMP_Text[] _titleImages;
