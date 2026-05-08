@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -225798262967860082}
   - component: {fileID: -8177142825000686729}
   - component: {fileID: -7715975534854919384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArtifactYellowSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

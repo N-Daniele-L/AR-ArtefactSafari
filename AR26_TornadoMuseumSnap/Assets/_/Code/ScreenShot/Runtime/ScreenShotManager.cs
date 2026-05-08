@@ -27,11 +27,18 @@ namespace ScreenShot.Runtime
             _renderCamera.enabled = true;
             _renderCamera.Render();
             
-            //insert raycast here
-            int raycastHit = 10;
+            var raycast = _raycastManager.SendRaycast();
+
+            int raycastHit = 0;
+            GameObject hitObject = null;
             
+            if (raycast.m_obj != null)
+            {
+                raycastHit = raycast.m_hit;
+                hitObject = raycast.m_obj;
+            }
             
-            ScreenShotData shotData = new ScreenShotData(renderTexture, raycastHit);
+            ScreenShotData shotData = new ScreenShotData(renderTexture, raycastHit, hitObject);
             _scoreManager.GetScreenshot(shotData);
             _renderCamera.enabled = false;
         }
@@ -54,6 +61,7 @@ namespace ScreenShot.Runtime
 
         [SerializeField] private Camera _renderCamera;
         [SerializeField] private ScoreFromScreenshotManager _scoreManager;
+        [SerializeField] private RaycastManager _raycastManager;
         private Camera _mainCamera;
 
         #endregion

@@ -83,7 +83,7 @@ namespace GameManager.Runtime
             {
                 _rawImages[i].texture = _screenShotData[i].m_shotTexture;
                 if(_screenShotData[i].m_objectHit != null) _titleImages[i].text = _screenShotData[i].m_objectHit.name;
-                else _titleImages[i].text = "no artefact";
+                else _titleImages[i].text = "Nothing";
                 _scoreImages[i].text = _screenShotData[i].m_screenShotScore.ToString();
             }
         }

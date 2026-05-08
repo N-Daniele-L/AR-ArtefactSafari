@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Data.Runtime;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -29,7 +30,7 @@ public class RaycastManager : MonoBehaviour
 
     #region Main Methods
 
-    public void SendRaycast()
+    public MaxHitForGameObjectData SendRaycast()
     {
         _gameObjetHits.Clear();
         for (int a = 0; a < _gridWidth; a++)
@@ -46,17 +47,17 @@ public class RaycastManager : MonoBehaviour
                 }
             }
         }
-        GetObjectWithMaxHit(_gameObjetHits);
+        return GetObjectWithMaxHit(_gameObjetHits);
     }
 
     #endregion
 
     #region Utils
 
-    private void GetObjectWithMaxHit(List<GameObject> list)
+    private MaxHitForGameObjectData GetObjectWithMaxHit(List<GameObject> list)
     {
         //var newList = list.OrderBy(x => x.name);
-        if (list.Count == 0) return;
+        if (list.Count == 0) return new MaxHitForGameObjectData(null,0);
         
         var countList  = 
             list
@@ -65,6 +66,7 @@ public class RaycastManager : MonoBehaviour
                 .OrderByDescending(x => x.Nombre);
 
         _maxHitData = new MaxHitForGameObjectData(countList.First().Valeur, countList.First().Nombre);
+        return _maxHitData;
     }
 
     #endregion

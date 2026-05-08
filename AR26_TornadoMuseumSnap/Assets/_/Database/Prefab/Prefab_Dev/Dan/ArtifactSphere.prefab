@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3937283314906250217}
   - component: {fileID: -1892250523574588864}
   - component: {fileID: -7683790691837159175}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArtifactSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

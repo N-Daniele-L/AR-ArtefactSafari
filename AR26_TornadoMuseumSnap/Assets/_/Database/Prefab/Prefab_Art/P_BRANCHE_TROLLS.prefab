@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4305542873682821623}
   - component: {fileID: 3804635091578040542}
   - component: {fileID: -2333312812282783142}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: P_BRANCHE_TROLLS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
