@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PoolSystem.RunTime
@@ -14,37 +15,28 @@ namespace PoolSystem.RunTime
 
         public GameObject GetArtefact() // active the first one of the list
         {
-                do
-                {
-                    _count++;
-                    _randomArtefact = Random.Range(0, _artefactsSpawned.Count);
-                } while (_randomArtefact == _lastArtefactUsed || _artefactsSpawned[_randomArtefact].activeInHierarchy && _count < 20);
+            if (_artefactsSpawned.All(artefact => artefact.activeInHierarchy))
+            {
+               return SpawnRandomArtefactPrefab();
+            }
+
+            _count = 0;
             
-                _lastArtefactUsed = _randomArtefact;
-                GameObject obj = _artefactsSpawned[_randomArtefact];
+            while ((_randomArtefact == _lastArtefactUsed || _artefactsSpawned[_randomArtefact].activeInHierarchy) && _count < 20)
+
+            {
+                _count++;
+                _randomArtefact = Random.Range(0, _artefactsSpawned.Count);
+            }
             
-                return obj;
+            _lastArtefactUsed = _randomArtefact;
+            GameObject obj = _artefactsSpawned[_randomArtefact];
             
-            // for (int i = 0; i < _artefactsSpawned.Count; i++)
-            // {
-            //     if (!_artefactsSpawned[i].activeInHierarchy)
-            //     {
-            //         return _artefactsSpawned[i];
-            //     }
-            // }
-            // return SpawnRandomArtefactPrefab(); // if all actived, spawn a new objet random of the list
+            return obj;
         }
 
         public void RemoveArtefact(GameObject obj) // disable the oldest each time
         {
-            // for (int i = 0; i < _gameObjectsSpawned.Count; i++)
-            // {
-            //     if (_gameObjectsSpawned[i].activeInHierarchy)
-            //     {
-            //         _gameObjectsSpawned[i].SetActive(false);
-            //         break;
-            //     }
-            // }
             obj.SetActive(false);
         }
         
@@ -65,11 +57,28 @@ namespace PoolSystem.RunTime
         private GameObject SpawnRandomArtefactPrefab() // random spawn
         {
             int random =  Random.Range(0, _artefactsPrefab.Count);
-            
-            GameObject obj = Instantiate(_artefactsPrefab[random],transform);
-            obj.SetActive(false);
-            _artefactsSpawned.Add(obj);
-            return obj;
+            if (_lastNamedObject == null)
+            {
+                GameObject obj = Instantiate(_artefactsPrefab[random],transform);
+                obj.SetActive(false);
+                _lastNamedObject = obj.name;
+                _artefactsSpawned.Add(obj);
+                return obj; 
+            }
+            else
+            {
+                GameObject obj = Instantiate(_artefactsPrefab[random],transform);
+                obj.SetActive(false);
+                if (_lastNamedObject.Equals(obj.gameObject.name))
+                {
+                    if (random == _artefactsPrefab.Count-1) random = 0;
+                    else random++;
+                    obj = Instantiate(_artefactsPrefab[random],transform);
+                }
+                _lastNamedObject = obj.name;
+                _artefactsSpawned.Add(obj);
+                return obj; 
+            }
         }
 
         private void SpawnPrefab()
@@ -88,10 +97,9 @@ namespace PoolSystem.RunTime
         
         [SerializeField]private List<GameObject> _artefactsPrefab;
         private List<GameObject> _artefactsSpawned = new List<GameObject>();
+        private string _lastNamedObject;
         private int _randomArtefact;
-        private int _lastArtefactUsed = -1;
-        // private GameObject _lastOject;
-        // private GameObject _randomObject;
+        private int _lastArtefactUsed;
         private int _count = 0;
 
         #endregion
